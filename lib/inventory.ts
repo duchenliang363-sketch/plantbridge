@@ -47,6 +47,10 @@ export type Plant = {
 
 const tbc = "to_be_confirmed" as const;
 
+function publicAsset(path: `/${string}`): string {
+  return `${process.env.PAGES_BASE_PATH ?? ""}${path}`;
+}
+
 const hzs120: Plant = {
   id: "PB-HZS120-001",
   slug: "used-hzs120-001",
@@ -77,31 +81,31 @@ const hzs120: Plant = {
   },
   photos: [
     {
-      src: "/plants/pb-hzs120-001/01-mixer.jpg",
+      src: publicAsset("/plants/pb-hzs120-001/01-mixer.jpg"),
       alt: "Actual Zoomlion mixer of used HZS120 concrete batching plant PB-HZS120-001",
     },
     {
-      src: "/plants/pb-hzs120-001/02-weigh-hopper.jpg",
+      src: publicAsset("/plants/pb-hzs120-001/02-weigh-hopper.jpg"),
       alt: "Actual weighing hopper area of used HZS120 plant PB-HZS120-001",
     },
     {
-      src: "/plants/pb-hzs120-001/03-aggregate-conveyor.jpg",
+      src: publicAsset("/plants/pb-hzs120-001/03-aggregate-conveyor.jpg"),
       alt: "Actual aggregate conveyor of used HZS120 plant PB-HZS120-001",
     },
     {
-      src: "/plants/pb-hzs120-001/04-aggregate-batcher.jpg",
+      src: publicAsset("/plants/pb-hzs120-001/04-aggregate-batcher.jpg"),
       alt: "Actual aggregate batching bins of used HZS120 plant PB-HZS120-001",
     },
     {
-      src: "/plants/pb-hzs120-001/05-mixer-discharge.jpg",
+      src: publicAsset("/plants/pb-hzs120-001/05-mixer-discharge.jpg"),
       alt: "Actual mixer discharge side of used HZS120 plant PB-HZS120-001",
     },
     {
-      src: "/plants/pb-hzs120-001/06-mixer-side.jpg",
+      src: publicAsset("/plants/pb-hzs120-001/06-mixer-side.jpg"),
       alt: "Actual Zoomlion mixer side view of used HZS120 plant PB-HZS120-001",
     },
     {
-      src: "/plants/pb-hzs120-001/07-batcher-site.jpg",
+      src: publicAsset("/plants/pb-hzs120-001/07-batcher-site.jpg"),
       alt: "Actual site photo of aggregate batcher for used HZS120 plant PB-HZS120-001",
     },
   ],
