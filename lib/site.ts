@@ -1,7 +1,7 @@
 export const site = {
   name: "PlantBridge",
-  domain: "usedbatchingplant.com",
-  url: "https://usedbatchingplant.com",
+  domain: "www.usedbatchingplant.com",
+  url: "https://www.usedbatchingplant.com",
   positioning: "Used Concrete Batching Plants from China",
   defaultTitle: "Used Concrete Batching Plants for Sale | PlantBridge",
   defaultDescription:
