@@ -10,6 +10,7 @@ export type EquipmentCategory =
 export type EquipmentPhoto = {
   src: string;
   alt: string;
+  caption?: string;
 };
 
 export type SpecRow = {
@@ -353,11 +354,42 @@ const sicoma3000: Equipment = {
     { label: "Year", value: "2019/03" },
     { label: "Nominal output class", value: "3000 L / 3 m³" },
     { label: "Type", value: "Twin-Shaft Concrete Mixer" },
+    {
+      label: "Made / assembled by",
+      value: "SICOMA Zhuhai",
+    },
+    { label: "Machine no.", value: "190107230 MYCR" },
     { label: "Condition", value: "Used" },
     { label: "Hours", value: onRequest },
     { label: "Wear of liners and arms", value: onRequest },
   ],
-  photos: [],
+  photos: [
+    {
+      src: publicAsset("/plants/pb-sicoma-mao3000-001/01-whole-machine.jpg"),
+      alt: "Actual SICOMA MAO 4500/3000 twin-shaft mixer body, serial 190107230 MYCR",
+      caption: "Actual Machine Photos",
+    },
+    {
+      src: publicAsset("/plants/pb-sicoma-mao3000-001/02-three-quarter.jpg"),
+      alt: "Actual SICOMA MAO 4500/3000 mixer three-quarter view, serial 190107230 MYCR",
+      caption: "Machine Details",
+    },
+    {
+      src: publicAsset("/plants/pb-sicoma-mao3000-001/03-nameplate.jpg"),
+      alt: "Nameplate of SICOMA MAO 4500/3000 mixer, 2019/03, machine no. 190107230 MYCR",
+      caption: "Nameplate",
+    },
+    {
+      src: publicAsset("/plants/pb-sicoma-mao3000-001/04-side-lubrication.jpg"),
+      alt: "Actual side structure and lubrication system of SICOMA MAO 4500/3000 mixer 190107230 MYCR",
+      caption: "Machine Details",
+    },
+    {
+      src: publicAsset("/plants/pb-sicoma-mao3000-001/05-interior.jpg"),
+      alt: "Actual mixer interior shafts, arms and liners of SICOMA MAO 4500/3000 190107230 MYCR",
+      caption: "Mixer Interior",
+    },
+  ],
   machineCondition: [
     { label: "Current operating status", value: onRequest },
     { label: "Known condition", value: "Used" },

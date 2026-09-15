@@ -35,6 +35,11 @@ export default function PhotoGallery({ photos }: { photos: EquipmentPhoto[] }) {
                 loading={index < 2 ? "eager" : "lazy"}
                 className="aspect-[4/3] w-full object-cover"
               />
+              {photo.caption ? (
+                <span className="block border-t border-steel-200 bg-white px-3 py-2 text-left text-xs font-medium text-steel-700">
+                  {photo.caption}
+                </span>
+              ) : null}
             </button>
           </li>
         ))}
