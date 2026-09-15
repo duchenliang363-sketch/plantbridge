@@ -6,7 +6,10 @@ import { site } from "@/lib/site";
 import { defaultInquiryMessage, whatsappHref } from "@/lib/whatsapp";
 
 const nav = [
-  { href: "/used-concrete-batching-plants/", label: "Available Plants" },
+  { href: "/equipment/", label: "Equipment" },
+  { href: "/used-concrete-batching-plants/", label: "Batching Plants" },
+  { href: "/used-stabilized-soil-mixing-plants/", label: "Soil Plants" },
+  { href: "/used-concrete-mixers/", label: "Mixers" },
   { href: "/about/", label: "About" },
   { href: "/contact/", label: "Contact" },
 ];
@@ -27,7 +30,7 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-6 text-sm font-medium text-steel-800 md:flex">
+        <nav className="hidden items-center gap-5 text-sm font-medium text-steel-800 lg:flex">
           {nav.map((item) => (
             <Link key={item.href} href={item.href} className="hover:text-ink">
               {item.label}
@@ -54,7 +57,7 @@ export default function Header() {
 
         <button
           type="button"
-          className="inline-flex h-10 items-center rounded-sm border border-steel-300 px-3 text-sm md:hidden"
+          className="inline-flex h-10 items-center rounded-sm border border-steel-300 px-3 text-sm lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((value) => !value)}
@@ -66,7 +69,7 @@ export default function Header() {
       {open ? (
         <nav
           id="mobile-nav"
-          className="space-y-1 border-t border-steel-200 px-4 py-3 md:hidden"
+          className="space-y-1 border-t border-steel-200 px-4 py-3 lg:hidden"
         >
           {nav.map((item) => (
             <Link

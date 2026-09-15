@@ -2,10 +2,10 @@ export const site = {
   name: "PlantBridge",
   domain: "www.usedbatchingplant.com",
   url: "https://www.usedbatchingplant.com",
-  positioning: "Used Concrete Batching Plants from China",
-  defaultTitle: "Used Concrete Batching Plants for Sale | PlantBridge",
+  positioning: "Used Concrete Equipment from China",
+  defaultTitle: "Used Concrete Equipment from China | PlantBridge",
   defaultDescription:
-    "Browse actual used concrete batching plants available from China. See real machine photos, condition details and equipment information. Contact PlantBridge for price, inspection video and shipping details.",
+    "Used concrete batching plants, stabilized soil mixing plants and concrete mixers from China. Real equipment. Real photos. Inspection available before shipment.",
   /**
    * Fill with a published address only. Leave empty until 老杜 confirms.
    * Example: "sales@usedbatchingplant.com"

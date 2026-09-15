@@ -10,14 +10,26 @@ export default function Footer() {
             {site.name}
           </p>
           <p className="mt-2 max-w-md text-sm leading-6 text-steel-700">
-            Actual used concrete batching plants available from China. Machine
-            details are listed only when they are known.
+            Used concrete equipment from China. PlantBridge screens, inspects,
+            trades and helps export actual machines. We are not a manufacturer.
           </p>
           <p className="mt-3 text-sm text-steel-600">{site.domain}</p>
         </div>
         <nav className="flex flex-col gap-2 text-sm">
+          <Link href="/equipment/" className="hover:underline">
+            Equipment
+          </Link>
           <Link href="/used-concrete-batching-plants/" className="hover:underline">
-            Available Plants
+            Batching Plants
+          </Link>
+          <Link
+            href="/used-stabilized-soil-mixing-plants/"
+            className="hover:underline"
+          >
+            Soil Plants
+          </Link>
+          <Link href="/used-concrete-mixers/" className="hover:underline">
+            Mixers
           </Link>
           <Link href="/about/" className="hover:underline">
             About

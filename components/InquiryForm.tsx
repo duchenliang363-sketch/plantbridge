@@ -5,33 +5,35 @@ import { isEmailConfigured, isWhatsAppConfigured, site } from "@/lib/site";
 import { whatsappHref } from "@/lib/whatsapp";
 
 type InquiryFormProps = {
-  defaultMachine: string;
+  defaultProductName: string;
+  defaultModel: string;
   whatsappMessage: string;
   whatsappLabel: string;
 };
 
 type FormState = {
+  productName: string;
+  model: string;
   name: string;
   country: string;
   whatsapp: string;
   email: string;
-  destinationPort: string;
-  machine: string;
   message: string;
 };
 
 export default function InquiryForm({
-  defaultMachine,
+  defaultProductName,
+  defaultModel,
   whatsappMessage,
   whatsappLabel,
 }: InquiryFormProps) {
   const [values, setValues] = useState<FormState>({
+    productName: defaultProductName,
+    model: defaultModel,
     name: "",
     country: "",
     whatsapp: "",
     email: "",
-    destinationPort: "",
-    machine: defaultMachine,
     message: "",
   });
   const [status, setStatus] = useState<"idle" | "prepared">("idle");
@@ -39,12 +41,12 @@ export default function InquiryForm({
 
   const composed = useMemo(() => {
     return [
+      `Product Name: ${values.productName}`,
+      `Model: ${values.model}`,
       `Name: ${values.name}`,
       `Country: ${values.country}`,
       `WhatsApp: ${values.whatsapp}`,
       `Email: ${values.email}`,
-      `Destination Port: ${values.destinationPort}`,
-      `Machine: ${values.machine}`,
       "",
       values.message || "Please send the price and more machine details.",
     ].join("\n");
@@ -54,7 +56,7 @@ export default function InquiryForm({
     event.preventDefault();
     if (isEmailConfigured()) {
       const mailto = `mailto:${site.email}?subject=${encodeURIComponent(
-        `Inquiry: ${values.machine}`,
+        `Inquiry: ${values.productName} / ${values.model}`,
       )}&body=${encodeURIComponent(composed)}`;
       window.location.href = mailto;
       return;
@@ -65,6 +67,22 @@ export default function InquiryForm({
   return (
     <div className="border border-steel-200 bg-white p-5 sm:p-6">
       <form className="space-y-4" onSubmit={onSubmit}>
+        <Field
+          id="product-name"
+          label="Product Name"
+          value={values.productName}
+          required
+          onChange={(productName) =>
+            setValues((current) => ({ ...current, productName }))
+          }
+        />
+        <Field
+          id="model"
+          label="Model"
+          value={values.model}
+          required
+          onChange={(model) => setValues((current) => ({ ...current, model }))}
+        />
         <Field
           id="name"
           label="Name"
@@ -96,21 +114,6 @@ export default function InquiryForm({
           required
           onChange={(email) => setValues((current) => ({ ...current, email }))}
         />
-        <Field
-          id="destination-port"
-          label="Destination Port"
-          value={values.destinationPort}
-          onChange={(destinationPort) =>
-            setValues((current) => ({ ...current, destinationPort }))
-          }
-        />
-        <Field
-          id="machine"
-          label="Machine"
-          value={values.machine}
-          required
-          onChange={(machine) => setValues((current) => ({ ...current, machine }))}
-        />
         <label className="block">
           <span className="mb-1.5 block text-sm font-medium">Message</span>
           <textarea
@@ -128,7 +131,7 @@ export default function InquiryForm({
             type="submit"
             className="inline-flex h-11 items-center justify-center bg-ink px-4 text-sm font-medium text-white hover:bg-steel-800"
           >
-            Get Price & Shipping Information
+            Request a Quote
           </button>
           {wa ? (
             <a
@@ -151,9 +154,7 @@ export default function InquiryForm({
       </form>
       {!isEmailConfigured() && !isWhatsAppConfigured() ? (
         <p className="mt-4 text-sm leading-6 text-steel-600">
-          WhatsApp and email are configuration items and have not been published
-          yet. Submitting this form prepares your inquiry on this page so it can
-          be copied once contact details are available.
+          WhatsApp and email have not been published yet.
         </p>
       ) : null}
       {status === "prepared" ? (

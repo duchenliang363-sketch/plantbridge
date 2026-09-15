@@ -1,35 +1,25 @@
 import type { Metadata } from "next";
 import InquiryForm from "@/components/InquiryForm";
 import JsonLd from "@/components/JsonLd";
-import { getAvailablePlants } from "@/lib/inventory";
 import { breadcrumbSchema } from "@/lib/schema";
 import { isEmailConfigured, isWhatsAppConfigured, site } from "@/lib/site";
-import { plantInquiryMessage, whatsappHref } from "@/lib/whatsapp";
+import { defaultInquiryMessage, whatsappHref } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact PlantBridge about actual used concrete batching plants available from China. Ask for price, inspection video and shipping information.",
-  alternates: {
-    canonical: "/contact/",
-  },
+    "Contact PlantBridge about used concrete equipment from China. Ask for price, inspection video and shipping information.",
+  alternates: { canonical: "/contact/" },
   openGraph: {
     title: "Contact | PlantBridge",
     description:
-      "Contact PlantBridge about actual used concrete batching plants available from China. Ask for price, inspection video and shipping information.",
+      "Contact PlantBridge about used concrete equipment from China. Ask for price, inspection video and shipping information.",
     url: "/contact/",
-  },
-  twitter: {
-    card: "summary",
-    title: "Contact | PlantBridge",
-    description:
-      "Contact PlantBridge about actual used concrete batching plants available from China. Ask for price, inspection video and shipping information.",
   },
 };
 
 export default function ContactPage() {
-  const plant = getAvailablePlants()[0];
-  const wa = plant ? whatsappHref(plantInquiryMessage(plant)) : null;
+  const wa = whatsappHref(defaultInquiryMessage());
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
@@ -58,7 +48,7 @@ export default function ContactPage() {
                 Message {site.name} on WhatsApp
               </a>
             ) : (
-              "Not published yet. This is a configuration item and will be shown when the number is provided."
+              "Not published yet."
             )}
           </dd>
         </div>
@@ -82,14 +72,15 @@ export default function ContactPage() {
 
       <h2 className="mt-12 text-2xl font-semibold">Inquiry</h2>
       <p className="mt-3 text-sm leading-6 text-steel-700">
-        Use this form to ask about the listed HZS120 or other used batching plant
-        questions.
+        Include product name and model so we know which machine you are asking
+        about.
       </p>
       <div className="mt-6">
         <InquiryForm
-          defaultMachine={plant ? `${plant.id} / ${plant.model}` : ""}
-          whatsappMessage={plant ? plantInquiryMessage(plant) : ""}
-          whatsappLabel="Ask About This HZS120 on WhatsApp"
+          defaultProductName="Used concrete equipment from China"
+          defaultModel="To be confirmed"
+          whatsappMessage={defaultInquiryMessage()}
+          whatsappLabel="Contact on WhatsApp"
         />
       </div>
     </main>

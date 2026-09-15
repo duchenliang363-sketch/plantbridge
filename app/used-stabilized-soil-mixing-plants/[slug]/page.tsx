@@ -11,7 +11,7 @@ type PageProps = {
 };
 
 export function generateStaticParams() {
-  return getEquipmentByCategory("batching-plant").map((item) => ({
+  return getEquipmentByCategory("soil-plant").map((item) => ({
     slug: item.slug,
   }));
 }
@@ -45,9 +45,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function BatchingPlantPage({ params }: PageProps) {
+export default async function SoilPlantPage({ params }: PageProps) {
   const { slug } = await params;
   const item = getEquipmentBySlug(slug);
-  if (!item || item.category !== "batching-plant") notFound();
+  if (!item || item.category !== "soil-plant") notFound();
   return <ProductDetail item={item} />;
 }

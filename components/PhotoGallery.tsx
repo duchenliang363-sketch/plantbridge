@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import type { PlantPhoto } from "@/lib/inventory";
+import type { EquipmentPhoto } from "@/lib/catalog";
 
-export default function PhotoGallery({ photos }: { photos: PlantPhoto[] }) {
+export default function PhotoGallery({ photos }: { photos: EquipmentPhoto[] }) {
   const [active, setActive] = useState<number | null>(null);
 
   if (photos.length === 0) {

@@ -5,20 +5,20 @@ import { getEquipmentByCategory } from "@/lib/catalog";
 import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Used Concrete Batching Plants",
+  title: "Used Stabilized Soil Mixing Plants",
   description:
-    "Browse currently available used concrete batching plants from China. Each listing is actual equipment.",
-  alternates: { canonical: "/used-concrete-batching-plants/" },
+    "Used stabilized soil mixing plants for sale from China. Actual Beifang Lutong and XCMG equipment.",
+  alternates: { canonical: "/used-stabilized-soil-mixing-plants/" },
   openGraph: {
-    title: "Used Concrete Batching Plants | PlantBridge",
+    title: "Used Stabilized Soil Mixing Plants | PlantBridge",
     description:
-      "Browse currently available used concrete batching plants from China. Each listing is actual equipment.",
-    url: "/used-concrete-batching-plants/",
+      "Used stabilized soil mixing plants for sale from China. Actual Beifang Lutong and XCMG equipment.",
+    url: "/used-stabilized-soil-mixing-plants/",
   },
 };
 
-export default function BatchingPlantsPage() {
-  const items = getEquipmentByCategory("batching-plant");
+export default function SoilPlantsPage() {
+  const items = getEquipmentByCategory("soil-plant");
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
@@ -26,17 +26,16 @@ export default function BatchingPlantsPage() {
         data={breadcrumbSchema([
           { name: "Home", path: "/" },
           {
-            name: "Used Concrete Batching Plants",
-            path: "/used-concrete-batching-plants/",
+            name: "Used Stabilized Soil Mixing Plants",
+            path: "/used-stabilized-soil-mixing-plants/",
           },
         ])}
       />
       <h1 className="text-3xl font-semibold sm:text-4xl">
-        Used Concrete Batching Plants
+        Used Stabilized Soil Mixing Plants
       </h1>
       <p className="mt-4 max-w-3xl text-base leading-7 text-steel-700">
-        Actual used concrete batching plants from China. Unknown details are not
-        invented.
+        Confirmed used plants only. Unknown parameters are available on request.
       </p>
       <div className="mt-10 grid gap-6 lg:grid-cols-2">
         {items.map((item) => (

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import PlantCard from "@/components/PlantCard";
+import EquipmentCard from "@/components/EquipmentCard";
 import TrustStrip from "@/components/TrustStrip";
-import { getAvailablePlants } from "@/lib/inventory";
+import { categories, getAllEquipment } from "@/lib/catalog";
 import { site } from "@/lib/site";
 import { defaultInquiryMessage, whatsappHref } from "@/lib/whatsapp";
 
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const plants = getAvailablePlants();
+  const items = getAllEquipment();
   const wa = whatsappHref(defaultInquiryMessage());
 
   return (
@@ -38,19 +38,17 @@ export default function HomePage() {
             {site.name}
           </p>
           <h1 className="mt-4 max-w-4xl text-balance text-3xl font-semibold leading-tight sm:text-5xl">
-            Used Concrete Batching Plants for Sale
+            Used Concrete Equipment from China
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-7 text-white/85 sm:text-lg">
-            Actual used batching plants available from China. See real equipment,
-            review machine details and contact us directly for price, inspection
-            information and shipping options.
+            Real equipment. Real photos. Inspection available before shipment.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
-              href="/used-concrete-batching-plants/"
+              href="/equipment/"
               className="inline-flex h-12 items-center justify-center bg-accent px-5 text-sm font-medium text-white hover:bg-accent-hover"
             >
-              View Available Plants
+              View Equipment
             </Link>
             {wa ? (
               <a
@@ -76,16 +74,28 @@ export default function HomePage() {
       <TrustStrip />
 
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <h2 className="text-2xl font-semibold sm:text-3xl">
-          Available Used Batching Plants
-        </h2>
+        <h2 className="text-2xl font-semibold sm:text-3xl">Available Equipment</h2>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-steel-700 sm:text-base">
-          V0.1 currently lists one actual machine. Additional plants will be
-          added only when they are real, available inventory.
+          Concrete batching plants, stabilized soil mixing plants and concrete
+          mixers. Only confirmed machines are listed.
         </p>
-        <div className="mt-8 max-w-xl">
-          {plants.map((plant) => (
-            <PlantCard key={plant.id} plant={plant} />
+        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          {categories.map((category) => (
+            <Link
+              key={category.href}
+              href={category.href}
+              className="border border-steel-200 bg-white p-5 hover:border-ink"
+            >
+              <h3 className="text-lg font-semibold">{category.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-steel-700">
+                {category.intro}
+              </p>
+            </Link>
+          ))}
+        </div>
+        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          {items.map((item) => (
+            <EquipmentCard key={item.id} item={item} />
           ))}
         </div>
       </section>
