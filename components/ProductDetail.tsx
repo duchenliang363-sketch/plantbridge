@@ -58,9 +58,13 @@ export default function ProductDetail({ item }: { item: Equipment }) {
             <h1 className="mt-3 text-3xl font-semibold leading-tight sm:text-4xl">
               {item.title}
             </h1>
-            <p className="mt-4 border border-steel-200 bg-steel-50 px-3 py-2 text-sm font-medium text-ink">
-              Actual equipment shown in photos.
-            </p>
+            <div className="mt-4 border border-steel-200 bg-steel-50 px-3 py-2 text-sm font-medium text-ink">
+              <p>Real Equipment Photos</p>
+              {item.photos.some((photo) => photo.caption === "Nameplate") ? (
+                <p>Nameplate Available</p>
+              ) : null}
+              <p>Inspection Available Before Shipment</p>
+            </div>
             <dl className="mt-6 grid grid-cols-2 gap-4 text-sm">
               {item.quickSpecs.map((spec) => (
                 <Spec
