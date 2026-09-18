@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { isEmailConfigured, isWhatsAppConfigured, site } from "@/lib/site";
+import { isWhatsAppConfigured } from "@/lib/site";
 import { whatsappHref } from "@/lib/whatsapp";
 
 type InquiryFormProps = {
@@ -11,7 +11,7 @@ type InquiryFormProps = {
   whatsappLabel: string;
 };
 
-type FormStatus = "idle" | "submitting" | "success" | "error";
+type FormStatus = "idle" | "success" | "error";
 
 export default function InquiryForm({
   defaultProductName,
@@ -32,83 +32,45 @@ export default function InquiryForm({
     ? `${defaultProductName} / ${defaultModel}`
     : defaultProductName;
 
-  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+  function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (status === "submitting") return;
     if (honeypot.trim()) return;
 
-    if (!isEmailConfigured()) {
+    const lines = [
+      `Inquiry: ${equipmentName}`,
+      `Name: ${name}`,
+      `Country: ${country}`,
+      `WhatsApp: ${whatsapp}`,
+      `Email: ${email}`,
+      `Message: ${
+        message.trim() || "Please send the price and more machine details."
+      }`,
+    ];
+
+    const direct = whatsappHref(lines.join("\n"));
+    if (!direct) {
       setStatus("error");
       setErrorText(
-        "The inquiry inbox is not published yet. Please try WhatsApp, or try again later.",
+        "WhatsApp is not configured right now. Please try again later.",
       );
       return;
     }
 
-    setStatus("submitting");
-    setErrorText("");
-
-    const submittedAt = new Date().toISOString();
-    const payload = {
-      name,
-      Country: country,
-      WhatsApp: whatsapp,
-      email,
-      Message: message.trim() || "Please send the price and more machine details.",
-      "Product / Equipment Name": equipmentName,
-      "Current Page URL": window.location.href,
-      "Submitted At": submittedAt,
-      _subject: `PlantBridge inquiry: ${equipmentName}`,
-      _template: "table",
-      _captcha: "false",
-    };
-
-    try {
-      const response = await fetch(
-        `https://formsubmit.co/ajax/${encodeURIComponent(site.email)}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify(payload),
-        },
-      );
-      const data: { success?: boolean | string; message?: string } =
-        await response.json().catch(() => ({}));
-      const ok =
-        response.ok &&
-        (data.success === true || data.success === "true");
-
-      if (!ok) {
-        setStatus("error");
-        setErrorText(
-          data.message ||
-            "Your request could not be sent. Please try again or contact us on WhatsApp.",
-        );
-        return;
-      }
-
-      setStatus("success");
-      setName("");
-      setCountry("");
-      setWhatsapp("");
-      setEmail("");
-      setMessage("");
-    } catch {
-      setStatus("error");
-      setErrorText(
-        "Your request could not be sent. Please try again or contact us on WhatsApp.",
-      );
-    }
+    window.open(direct, "_blank", "noopener,noreferrer");
+    setStatus("success");
+    setName("");
+    setCountry("");
+    setWhatsapp("");
+    setEmail("");
+    setMessage("");
   }
 
   return (
     <div className="border border-steel-200 bg-white p-5 sm:p-6">
       {status === "success" ? (
         <p className="text-sm leading-6 text-steel-800">
-          Thank you! Your request has been received. We’ll contact you shortly.
+          WhatsApp is opening with your inquiry ready — press send there and we
+          will reply shortly.
         </p>
       ) : (
         <form className="space-y-4" onSubmit={onSubmit}>
@@ -166,10 +128,9 @@ export default function InquiryForm({
           <div className="flex flex-col gap-3 sm:flex-row">
             <button
               type="submit"
-              disabled={status === "submitting"}
-              className="inline-flex h-11 items-center justify-center bg-ink px-4 text-sm font-medium text-white hover:bg-steel-800 disabled:cursor-wait disabled:opacity-70"
+              className="inline-flex h-11 items-center justify-center bg-ink px-4 text-sm font-medium text-white hover:bg-steel-800"
             >
-              {status === "submitting" ? "Sending…" : "Request a Quote"}
+              Send via WhatsApp
             </button>
             {wa ? (
               <a
@@ -191,9 +152,9 @@ export default function InquiryForm({
           </div>
         </form>
       )}
-      {!isEmailConfigured() && !isWhatsAppConfigured() ? (
+      {!isWhatsAppConfigured() ? (
         <p className="mt-4 text-sm leading-6 text-steel-600">
-          WhatsApp and email have not been published yet.
+          WhatsApp has not been published yet.
         </p>
       ) : null}
       {status === "error" ? (
