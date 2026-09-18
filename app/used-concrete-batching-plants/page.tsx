@@ -3,18 +3,21 @@ import JsonLd from "@/components/JsonLd";
 import EquipmentCard from "@/components/EquipmentCard";
 import { getEquipmentByCategory } from "@/lib/catalog";
 import { breadcrumbSchema } from "@/lib/schema";
+import { categorySocial } from "@/lib/seo";
+
+const listingDescription =
+  "Browse currently available used concrete batching plants from China. Each listing is actual equipment.";
 
 export const metadata: Metadata = {
   title: "Used Concrete Batching Plants",
-  description:
-    "Browse currently available used concrete batching plants from China. Each listing is actual equipment.",
+  description: listingDescription,
   alternates: { canonical: "/used-concrete-batching-plants/" },
-  openGraph: {
-    title: "Used Concrete Batching Plants | PlantBridge",
-    description:
-      "Browse currently available used concrete batching plants from China. Each listing is actual equipment.",
-    url: "/used-concrete-batching-plants/",
-  },
+  ...categorySocial(
+    "batching-plant",
+    "Used Concrete Batching Plants | PlantBridge",
+    listingDescription,
+    "/used-concrete-batching-plants/",
+  ),
 };
 
 export default function BatchingPlantsPage() {

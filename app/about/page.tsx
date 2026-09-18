@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
-import { site } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/schema";
+import { socialMeta } from "@/lib/seo";
+import { site } from "@/lib/site";
+
+const aboutDescription =
+  "PlantBridge screens, inspects, trades and helps export used concrete equipment from China. We are not an equipment manufacturer.";
 
 export const metadata: Metadata = {
   title: "About",
-  description:
-    "PlantBridge screens, inspects, trades and helps export used concrete equipment from China. We are not an equipment manufacturer.",
+  description: aboutDescription,
   alternates: { canonical: "/about/" },
-  openGraph: {
+  ...socialMeta({
     title: "About | PlantBridge",
-    description:
-      "PlantBridge screens, inspects, trades and helps export used concrete equipment from China. We are not an equipment manufacturer.",
+    description: aboutDescription,
     url: "/about/",
-  },
+  }),
 };
 
 export default function AboutPage() {

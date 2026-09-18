@@ -3,18 +3,20 @@ import JsonLd from "@/components/JsonLd";
 import EquipmentCard from "@/components/EquipmentCard";
 import { categories, getAllEquipment } from "@/lib/catalog";
 import { breadcrumbSchema } from "@/lib/schema";
+import { socialMeta } from "@/lib/seo";
+
+const equipmentDescription =
+  "Browse actual used concrete batching plants, stabilized soil mixing plants and concrete mixers from China.";
 
 export const metadata: Metadata = {
   title: "Used Concrete Equipment",
-  description:
-    "Browse actual used concrete batching plants, stabilized soil mixing plants and concrete mixers from China.",
+  description: equipmentDescription,
   alternates: { canonical: "/equipment/" },
-  openGraph: {
+  ...socialMeta({
     title: "Used Concrete Equipment | PlantBridge",
-    description:
-      "Browse actual used concrete batching plants, stabilized soil mixing plants and concrete mixers from China.",
+    description: equipmentDescription,
     url: "/equipment/",
-  },
+  }),
 };
 
 export default function EquipmentPage() {

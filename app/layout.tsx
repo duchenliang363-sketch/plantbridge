@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import JsonLd from "@/components/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
+import { socialMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -16,19 +17,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: site.url,
-    siteName: site.name,
+  ...socialMeta({
     title: site.defaultTitle,
     description: site.defaultDescription,
-  },
-  twitter: {
-    card: "summary",
-    title: site.defaultTitle,
-    description: site.defaultDescription,
-  },
+    url: "/",
+  }),
   robots: {
     index: true,
     follow: true,

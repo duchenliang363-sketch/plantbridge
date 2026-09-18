@@ -7,12 +7,12 @@ export const site = {
   defaultDescription:
     "Used concrete batching plants, stabilized soil mixing plants and concrete mixers from China. Real equipment. Real photos. Inspection available before shipment.",
   /**
-   * Fill with a published address only. Leave empty until 老杜 confirms.
-   * Example: "sales@usedbatchingplant.com"
+   * Public inbox and FormSubmit destination. Founder-confirmed 2026-09-17.
    */
   email: "duchenliang363@gmail.com",
   /**
-   * WhatsApp number in international digits only, no plus sign or spaces.
+   * WhatsApp in international digits only. Founder-confirmed 2026-09-17:
+   * +86 186 3207 8365
    */
   whatsappNumber: "8618632078365",
 } as const;

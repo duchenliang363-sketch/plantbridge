@@ -2,20 +2,22 @@ import type { Metadata } from "next";
 import InquiryForm from "@/components/InquiryForm";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
+import { socialMeta } from "@/lib/seo";
 import { isEmailConfigured, isWhatsAppConfigured, site } from "@/lib/site";
 import { defaultInquiryMessage, whatsappHref } from "@/lib/whatsapp";
 
+const contactDescription =
+  "Contact PlantBridge about used concrete equipment from China. Ask for price, inspection video and shipping information.";
+
 export const metadata: Metadata = {
   title: "Contact",
-  description:
-    "Contact PlantBridge about used concrete equipment from China. Ask for price, inspection video and shipping information.",
+  description: contactDescription,
   alternates: { canonical: "/contact/" },
-  openGraph: {
+  ...socialMeta({
     title: "Contact | PlantBridge",
-    description:
-      "Contact PlantBridge about used concrete equipment from China. Ask for price, inspection video and shipping information.",
+    description: contactDescription,
     url: "/contact/",
-  },
+  }),
 };
 
 export default function ContactPage() {

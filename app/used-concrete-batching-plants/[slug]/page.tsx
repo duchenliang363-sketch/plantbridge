@@ -5,6 +5,7 @@ import {
   getEquipmentByCategory,
   getEquipmentBySlug,
 } from "@/lib/catalog";
+import { equipmentSocial } from "@/lib/seo";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -29,19 +30,7 @@ export async function generateMetadata({
     title: { absolute: item.seoTitle },
     description: item.seoDescription,
     alternates: { canonical: `${item.path}/` },
-    openGraph: {
-      title: item.seoTitle,
-      description: item.seoDescription,
-      url: `${item.path}/`,
-      ...(item.photos[0]
-        ? { images: [{ url: item.photos[0].src, alt: item.photos[0].alt }] }
-        : {}),
-    },
-    twitter: {
-      card: item.photos[0] ? "summary_large_image" : "summary",
-      title: item.seoTitle,
-      description: item.seoDescription,
-    },
+    ...equipmentSocial(item),
   };
 }
 

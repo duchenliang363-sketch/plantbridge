@@ -3,6 +3,7 @@ import Link from "next/link";
 import EquipmentCard from "@/components/EquipmentCard";
 import TrustStrip from "@/components/TrustStrip";
 import { categories, getAllEquipment } from "@/lib/catalog";
+import { socialMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { defaultInquiryMessage, whatsappHref } from "@/lib/whatsapp";
 
@@ -14,16 +15,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  openGraph: {
+  ...socialMeta({
     title: site.defaultTitle,
     description: site.defaultDescription,
     url: "/",
-  },
-  twitter: {
-    card: "summary",
-    title: site.defaultTitle,
-    description: site.defaultDescription,
-  },
+  }),
 };
 
 export default function HomePage() {

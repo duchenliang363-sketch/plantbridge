@@ -3,18 +3,21 @@ import JsonLd from "@/components/JsonLd";
 import EquipmentCard from "@/components/EquipmentCard";
 import { getEquipmentByCategory } from "@/lib/catalog";
 import { breadcrumbSchema } from "@/lib/schema";
+import { categorySocial } from "@/lib/seo";
+
+const listingDescription =
+  "Used stabilized soil mixing plants for sale from China. Actual Beifang Lutong and XCMG equipment.";
 
 export const metadata: Metadata = {
   title: "Used Stabilized Soil Mixing Plants",
-  description:
-    "Used stabilized soil mixing plants for sale from China. Actual Beifang Lutong and XCMG equipment.",
+  description: listingDescription,
   alternates: { canonical: "/used-stabilized-soil-mixing-plants/" },
-  openGraph: {
-    title: "Used Stabilized Soil Mixing Plants | PlantBridge",
-    description:
-      "Used stabilized soil mixing plants for sale from China. Actual Beifang Lutong and XCMG equipment.",
-    url: "/used-stabilized-soil-mixing-plants/",
-  },
+  ...categorySocial(
+    "soil-plant",
+    "Used Stabilized Soil Mixing Plants | PlantBridge",
+    listingDescription,
+    "/used-stabilized-soil-mixing-plants/",
+  ),
 };
 
 export default function SoilPlantsPage() {

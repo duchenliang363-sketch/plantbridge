@@ -7,19 +7,22 @@ import {
   mixerSizeLayout,
 } from "@/lib/catalog";
 import { breadcrumbSchema } from "@/lib/schema";
+import { categorySocial } from "@/lib/seo";
 import { defaultInquiryMessage, whatsappHref } from "@/lib/whatsapp";
+
+const listingDescription =
+  "Used twin-shaft concrete mixers from China. Size classes 2000, 3000, 4000 and 4500. Only confirmed machines are listed.";
 
 export const metadata: Metadata = {
   title: "Used Concrete Mixers",
-  description:
-    "Used twin-shaft concrete mixers from China. Size classes 2000, 3000, 4000 and 4500. Only confirmed machines are listed.",
+  description: listingDescription,
   alternates: { canonical: "/used-concrete-mixers/" },
-  openGraph: {
-    title: "Used Concrete Mixers | PlantBridge",
-    description:
-      "Used twin-shaft concrete mixers from China. Size classes 2000, 3000, 4000 and 4500. Only confirmed machines are listed.",
-    url: "/used-concrete-mixers/",
-  },
+  ...categorySocial(
+    "mixer",
+    "Used Concrete Mixers | PlantBridge",
+    listingDescription,
+    "/used-concrete-mixers/",
+  ),
 };
 
 export default function MixersPage() {
