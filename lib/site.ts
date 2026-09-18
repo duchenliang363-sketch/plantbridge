@@ -9,7 +9,7 @@ export const site = {
   /**
    * Public inbox and FormSubmit destination. Founder-confirmed 2026-09-17.
    */
-  email: "duchenliang363@gmail.com",
+  email: "ddchen8866@icloud.com",
   /**
    * WhatsApp in international digits only. Founder-confirmed 2026-09-17:
    * +86 186 3207 8365
